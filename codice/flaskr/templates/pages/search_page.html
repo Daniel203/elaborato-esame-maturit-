@@ -1,0 +1,33 @@
+
+{% extends 'base.html' %} {% block content %}
+<form class="form-inline d-flex justify-content-center md-form form-sm mt-5" method="GET" action="search">
+  <i class="fas fa-search" aria-hidden="true"></i>
+  <input class="form-control form-control-sm ml-3 w-50" type="text" placeholder="Cerca piante"
+    aria-label="search" name="search">
+</form>
+
+<div class="container">
+<table class="table table-striped mt-5">
+  <thead>
+    <tr>
+      <th scope="col">Nome</th>
+      <th scope="col">Nome Latino</th>
+      <th scope="col">Specie</th>
+      <th scope="col">Visitabile</th>
+      <th scope="col">Zona</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for plant in data %}
+    <tr>
+      <td>{{ plant.nome_pianta }}</td>
+      <td>{{ plant.nome_pianta_latino }}</td>
+      <td>{{ plant.specie }}</td>
+      <td>{{ plant.visitabile }}</td>
+      <td>{{ plant.zona_giardino }}</td>
+    </tr> 
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endblock %}

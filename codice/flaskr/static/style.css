@@ -1,0 +1,10 @@
+[data-href] { cursor: pointer; }
+
+#link_to_home {
+  color: black;
+  text-decoration: none !important;
+}
+
+#link_to_home:hover {
+  color: white;
+}

@@ -1,0 +1,58 @@
+{% extends 'base.html' %} {% block content %}
+<form class="form-inline d-flex justify-content-center md-form form-sm mt-5" method="GET" action="search">
+  <i class="fas fa-search" aria-hidden="true"></i>
+  <input class="form-control form-control-sm ml-3 w-50" id="myAutocomplete" type="text" placeholder="Cerca piante"
+    aria-label="search" name="search" autocomplete="off">
+</form>
+
+<div class="container">
+<table class="table table-hover table-striped mt-5">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Nome Latino</th>
+      <th scope="col">Specie</th>
+      <th scope="col">Zona</th>
+      <th scope="col">Visitabile</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for plant in data %}
+    <tr class="clickable-row" data-href="http://127.0.0.1:5000/detail/{{ plant.nome_pianta }}">
+      <td>{{ data.index(plant) + 1 }}</td>
+      <td>{{ plant.nome_pianta }}</td>
+      <td>{{ plant.nome_pianta_latino }}</td>
+      <td>{{ plant.specie }}</td>
+      <td>{{ plant.zona_giardino }}</td>
+      <td>{{ plant.visitabile }}</td>
+    </tr> 
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+
+
+
+<script>
+  jQuery(document).ready(function($) {
+    $('*[data-href]').on('click', function() {
+        window.location = $(this).data("href");
+    });
+  });
+</script>
+
+<script>
+  var src = {{ json|tojson }} ;
+  
+  function onSelectItem(item, element) {
+    window.location.href = `http://127.0.0.1:5000/detail/${element.value}`
+  }
+
+  $('#myAutocomplete').autocomplete({
+    source: src,
+    onSelectItem: onSelectItem,
+    highlightClass: 'text-success'
+  });
+</script>
+{% endblock %}
