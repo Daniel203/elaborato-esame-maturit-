@@ -36,9 +36,7 @@ CREATE TABLE `TipologiaPianta` (
   `fine_fioritura` enum('Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre', 'non fiorisce', 'stagionale') DEFAULT NULL,
   `acqua_necessaria` enum('poca','media','tanta') DEFAULT NULL,
   `manutenzione_necessaria` enum('poca','media','tanta') DEFAULT NULL, 
-  PRIMARY KEY (`id_tipo_pianta`),
-  UNIQUE KEY `nome_pianta` (`nome_pianta`),
-  UNIQUE KEY `nome_pianta_latino` (`nome_pianta_latino`)
+  PRIMARY KEY (`id_tipo_pianta`)
 ) COMMENT="contiene tutte le tipologie di pianta presenti nel giardno ";
 
 
@@ -53,6 +51,7 @@ CREATE TABLE `Pianta` (
   `giorno_piantumazione` date DEFAULT NULL,
   `viva` boolean DEFAULT 1,
   `zona_giardino` int(3) NOT NULL,
+  `immagine` varchar(100) DEFAULT NUll,
   PRIMARY KEY (`id_pianta`),
   CONSTRAINT `pianta_ibk_1` FOREIGN KEY (`tipologia_pianta`) REFERENCES `TipologiaPianta` (`id_tipo_pianta`) ON UPDATE CASCADE ON DELETE CASCADE,
   CONSTRAINT `pianta_ibk_2` FOREIGN KEY (`zona_giardino`) REFERENCES `ZonaGiardino` (`id_zona`) ON UPDATE CASCADE ON DELETE CASCADE

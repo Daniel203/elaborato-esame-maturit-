@@ -19,7 +19,3 @@ SELECT tp.nome_pianta, tp.nome_pianta_latino, tp.nome_specie
 FROM TipologiaPianta AS tp 
 INNER JOIN Pianta AS p ON p.tipologia_pianta = tp.id_tipo_pianta
 WHERE tp.inizio_fioritura = 'MAGGIO' OR tp.fine_fioritura = 'MAGGIO';
-
-
-
-

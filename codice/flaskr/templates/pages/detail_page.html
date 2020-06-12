@@ -2,12 +2,31 @@
 <div class="container">
   <div>
     {% for plant in data %}
-    <h2>{{ plant.nome_pianta }}</h2>
-    <h2>{{ plant.nome_pianta_latino }}</h2>
-    <h2>{{ plant.specie }}</h2>
-    <h2>{{ plant.visitabile }}</h2>
-    <h2>{{ plant.zona_giardino }}</h2>
+      <div class="card mt-5 mx-auto" style="width:400px">
+        <img class="card-img-top" src="{{ url_for('static', filename= 'images/' + plant.immagine + '.jpg') }}" alt="Card image">
+        <div class="card-body">
+          <h4 class="card-title">{{ plant.nome_pianta }}</h4>
+          <p class="card-text">
+            <p><b>Nome latino:</b> {{ plant.nome_pianta_latino }}</p>
+            <p><b>Specie:</b> {{ plant.specie }}</p>
+            <p><b>E' visitabile:</b> {{ "si" if plant.visitabile == 1 else "no"}}</p>
+            <p><b>Zona giardino:</b> {{ plant.zona_giardino }}</p>
+            <p><b>Giorno piantumazione:</b> {{ plant.giorno_piantumazione }}</2>
+            {% if plant.inizio_fioritura == "stagionale" or plant.inizio_fioritura == plant.fine_fioritura %}
+              <p><b>Fioritura:</b> {{ plant.inizio_fioritura }}</2>
+            {% else %}
+              <p><b>Inizio fioritura:</b> {{ plant.inizio_fioritura }}</2>
+              <p><b>Fine fioritura:</b> {{ plant.fine_fioritura }}</2>
+            {% endif %}
+            <p><b>Acqua necessaria:</b> {{ plant.acqua_necessaria }}</p>
+            <p><b>Manutenzione necessaria:</b> {{ plant.manutenzione_necessaria }}</p>
+            <p><b>E' viva:</b> {{ "si" if plant.viva == 1 else "no" }}</p>
+          </p>
+          <a href="/" class="btn btn-success">Torna alla home</a>
+        </div>
+      </div>
     {% endfor %}
   </div>
 </div>
+
 {% endblock %}

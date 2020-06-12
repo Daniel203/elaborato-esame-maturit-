@@ -11,7 +11,7 @@ def create_app():
 
     @app.route("/")
     def home():
-        data: list = Query(db_connection).get_all_plants()
+        data: list = Query(db_connection).get_all_plants_type()
         json: dict = {}
         for plant in data:
             json[plant.nome_pianta] = data.index(plant)
@@ -24,14 +24,12 @@ def create_app():
     @app.route("/search")
     def search():
         search: str = request.args.get("search")
-        data: list = Query(db_connection).get_specific_plant(search)
+        data: list = Query(db_connection).get_plants_from_name(search)
         return render_template("pages/search_page.html", data=data)
 
-    @app.route("/detail/<plant_name>")
-    def detail(plant_name: str):
-        data: list = Query(db_connection).get_specific_plant_complete_details(
-            plant_name
-        )
+    @app.route("/detail/id_pianta=<plant_id>")
+    def detail(plant_id: str):
+        data: list = Query(db_connection).get_specific_plant_from_id(plant_id)
         return render_template("pages/detail_page.html", data=data)
 
     return app

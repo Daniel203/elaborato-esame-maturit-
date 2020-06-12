@@ -4,11 +4,19 @@
 
 http://www.missouribotanicalgarden.org/PlantFinder/PlantFinderProfileResults.aspx?basic=s
 
+Un giardino botanico vuole realizzare un sito web in cui gli utenti possano visuallizzare le piante presenti e le loro caratteristiche.
 
+Alcune caratteristiche fondamentali sono sicuramente il nome, sia quello commerciale che quello latino, la specie a cui appartiene, informazioni riguardo alla manutenzione necessaria.
 
-Il giardino botanico vuole creare un sito web dove visualizzare le varie tipologie di piante con le loro caratteristiche e il luogo dove sono posizionate.
+Per realizzare ciò è necessario collegare il sito ad un database contenente tutte queste informazioni.
 
-Quindi sicuramente sarà necessario un database con una tabella con tutti i tipi di piante, una tabella che raggruppa le varie specie ed infine una tabella dove sono inserite le varie zone aperte al pubblico.
+Il database deve essere divisio in tre tabelle: 
+
+- **TipologiaPianta**: indica il tipo di pianta e le sue caratteristiche
+
+- **Pianta**: rappresenta ogni singola pianta del giardino, con delle caratteristiche specifiche coma la data di piantumazione
+
+- **ZonaGiardino**: contiene le varie zone del giardino e dice se sono accessibili
 
 Una pianta ha diverse caratteristiche che la contraddistinguono: il nome per primo, che può essere sia quello commerciale che quello latino, la specie a cui appartiene, il periodo in cui fiorisce, il colore dei fiori, la manuntenzione che richiede, la quantità di acqua.
 
@@ -18,17 +26,11 @@ Per ultima la tabella delle zone contiene il nome della zona e un valore che ind
 
 Una tipologia di pianta può essere esposta in varie zone del giardino, quindi la relazione tra la tabella delle piante e quella delle zone deve essere una molti-a-molti.
 
-
-
 Per il sito internet è importante avere una funzione di ricerce delle piante, in modo da poterle trovare facilmente.
 
 Una volta effettuata la ricerca, ogni risultato dovrebbe riportare le informazioni principali della pianta, come nome e specie e sarebbe utile visualizzare anche un'immagine di essa.
 
 Poi cliccando sul risultato sarà possibile visuallizzare in modo approfondito le informazioni della pianta, potendo anche sapere in quale zona del giardino è posizionata.
-
- 
-
-
 
 ### 2. Modello  concettuale e logico
 
@@ -40,10 +42,4 @@ AreaGiardino(<u>NomeArea,</u> ampiezza),
 
 giorno in cui è stata piantata, viva o morta, numero piante
 
-
-
-
-
 ![elaborato_schema_er.png](/home/daniel/Downloads/elaborato_schema_er.png)
-
-

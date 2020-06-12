@@ -31,10 +31,11 @@ VALUES
 -- dump for table `Pianta`
 --
 
-INSERT INTO `Pianta` (`tipologia_pianta`, `giorno_piantumazione`, `viva`, `zona_giardino`)
+INSERT INTO `Pianta` (`tipologia_pianta`, `giorno_piantumazione`, `viva`, `zona_giardino`, `immagine`)
 VALUES 
-  ('1', '2019-12-04', true, 1),
-  ('2', '2009-09-27', true, 2),
-  ('3', '2003-06-12', false, 3),
-  ('4', '2007-04-18', true, 2),
-  ('5', '2009-10-30', false, 5);
+  ('1', '2019-12-04', true, 1, 'immagine1'),
+  ('1', '2017-12-04', false, 5, 'immagine2'),
+  ('2', '2009-09-27', true, 2, 'immagine3'),
+  ('3', '2003-06-12', false, 3, 'immagine4'),
+  ('4', '2007-04-18', true, 2, 'immagine5'),
+  ('5', '2009-10-30', false, 5, 'immagine6');
