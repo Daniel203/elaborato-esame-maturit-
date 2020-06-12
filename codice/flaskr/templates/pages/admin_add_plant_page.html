@@ -1,0 +1,37 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container mt-5">
+  <form action="/admin/added_plant" method="POST">
+    <div class="form-group">
+      <label>Tipo pianta</label>
+      <select class="form-control" name="plant_type">
+        {% for plant_type in plant_types %}
+        <option>{{ plant_type }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Giorno piantumazione ("YYYY-MM-dd")</label>
+      <input type="text" class="form-control" name="giorno_piantumazione">
+    </div>
+    <div class="form-group">
+      <label>Viva</label>
+      <select class="form-control" name="viva">
+        <option>Si</option>
+        <option>No</option>
+      </select>
+    </div>
+      <label>Zona giardno</label>
+      <select class="form-control" name="garden_zone">
+        {% for garden_zone in garden_zones %}
+          <option>{{ garden_zone }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <p><input class="btn mt-5 btn-success" type = "submit" value = "submit" /></p>
+  </form>
+</div>
+
+<div class="container text-center mt-5">
+  <a href="/"><h4>Torna all home</h4></a>
+</div>
+{% endblock %}

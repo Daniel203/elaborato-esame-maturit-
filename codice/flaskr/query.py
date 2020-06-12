@@ -18,7 +18,7 @@ class Query:
             except mysql.connector.Error as err:
                 print(f"Errore {err}")
 
-    def _parse_data(self) -> list:
+    def _parse_plant_data(self) -> list:
         if self.db_cursor is not None:
             plants: list = []
             for (
@@ -70,7 +70,7 @@ GROUP BY tp.nome_pianta
 ORDER BY tp.nome_pianta
         """
         self._execute_query(QUERY)
-        data: list = self._parse_data()
+        data: list = self._parse_plant_data()
         return data
 
     def get_plants_from_name(self, plant_name: str) -> list:
@@ -86,7 +86,7 @@ WHERE tp.nome_pianta = "{plant_name}"
 ORDER BY tp.nome_pianta
         """
         self._execute_query(QUERY)
-        data: list = self._parse_data()
+        data: list = self._parse_plant_data()
         return data
 
     def get_specific_plant_from_id(self, plant_id: str) -> list:
@@ -101,5 +101,50 @@ INNER JOIN ZonaGiardino as zg ON p.zona_giardino = zg.id_zona
 WHERE p.id_pianta = "{plant_id}"
         """
         self._execute_query(QUERY)
-        data: list = self._parse_data()
+        data: list = self._parse_plant_data()
         return data
+
+    def get_all_plant_types(self) -> list:
+        QUERY: str = """
+SELECT tp.id_tipo_pianta
+FROM TipologiaPianta as tp
+ORDER BY tp.id_tipo_pianta
+        """
+        self._execute_query(QUERY)
+        data: list = []
+        for id_tipo_pianta in self.db_cursor:
+            data.append(id_tipo_pianta[0])
+        return data
+
+    def get_garden_zones(self) -> list:
+        QUERY: str = """
+SELECT zg.id_zona
+FROM ZonaGiardino as zg
+ORDER BY zg.id_zona
+        """
+        self._execute_query(QUERY)
+        data: list = []
+        for id_zona in self.db_cursor:
+            data.append(id_zona[0])
+        return data
+
+    def add_plant(self, data) -> None:
+        QUERY: str = f"""
+INSERT INTO `Pianta` (`tipologia_pianta`, `giorno_piantumazione`, `viva`,
+`zona_giardino`)
+VALUES
+  ('{data["plant_type"]}',
+  '{data["giorno_piantumazione"]}',
+  {1 if data["viva"] == "Si" else 0},
+  {data["garden_zone"]}
+  );
+        """
+        print("---------------")
+        print("---------------")
+        print("---------------")
+        print("---------------")
+        print("---------------")
+        print("---------------")
+        print("---------------")
+        print(QUERY)
+        self._execute_query(QUERY)
